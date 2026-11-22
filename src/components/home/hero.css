@@ -1,0 +1,129 @@
+#hero_section {
+    overflow-x: clip;
+}
+
+.hero-word {
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.hero-letter {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(20px) scale(0.7);
+    transform-origin: center bottom;
+    animation: heroLetterPop 700ms cubic-bezier(0.16, 1, 0.3, 1)
+        var(--hero-letter-delay, 0ms) both;
+    will-change: opacity, transform;
+}
+
+#hero_section .gradient_color {
+    animation: heroBadgeIn 950ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+#hero_section .hero-copy {
+    animation: heroSlideFromRight 1s cubic-bezier(0.22, 1, 0.36, 1) 1.02s both;
+}
+
+#hero_section .hero_btn a {
+    animation: heroButtonRise 0.9s cubic-bezier(0.22, 1, 0.36, 1) 1.38s both;
+    transform-origin: center bottom;
+}
+
+#hero_section .hero_btn a:nth-child(2) {
+    animation-delay: 1.52s;
+}
+
+#hero_section .hero_btn a .hero-icon {
+    display: inline-flex;
+    animation: heroButtonDrop 0.8s cubic-bezier(0.22, 1, 0.36, 1) 1.38s both;
+}
+
+#hero_section .hero_btn a:nth-child(2) .hero-icon {
+    animation-delay: 1.52s;
+}
+
+#hero_section:not(.hero-animation-active) .hero-letter,
+#hero_section:not(.hero-animation-active) .gradient_color,
+#hero_section:not(.hero-animation-active) .hero-copy,
+#hero_section:not(.hero-animation-active) .hero_btn a,
+#hero_section:not(.hero-animation-active) .hero_btn a .hero-icon {
+    animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #hero_section .hero-letter,
+    #hero_section .gradient_color,
+    #hero_section .hero-copy,
+    #hero_section .hero_btn a,
+    #hero_section .hero_btn a .hero-icon {
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes heroBadgeIn {
+    0% {
+        opacity: 0;
+        transform: translateX(-44px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes heroLetterPop {
+    0% {
+        opacity: 0;
+        transform: translateY(20px) scale(0.7);
+    }
+
+    72% {
+        opacity: 1;
+        transform: translateY(-2px) scale(1.04);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes heroSlideFromRight {
+    0% {
+        opacity: 0;
+        transform: perspective(900px) translate3d(72px, 0, -28px) rotateY(6deg);
+    }
+
+    100% {
+        opacity: 1;
+        transform: perspective(900px) translate3d(0, 0, 0) rotateY(0);
+    }
+}
+
+@keyframes heroButtonRise {
+    0% {
+        opacity: 0;
+        transform: perspective(700px) translate3d(0, 30px, -24px) rotateX(-12deg) scaleY(0.94);
+    }
+
+    100% {
+        opacity: 1;
+        transform: perspective(700px) translate3d(0, 0, 0) rotateX(0) scaleY(1);
+    }
+}
+
+@keyframes heroButtonDrop {
+    0% {
+        opacity: 0;
+        transform: perspective(700px) translate3d(0, -18px, -12px) rotateX(10deg);
+    }
+
+    100% {
+        opacity: 1;
+        transform: perspective(700px) translate3d(0, 0, 0) rotateX(0);
+    }
+}
